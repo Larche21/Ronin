@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector3;
 
 public class MyGG extends Game {
-	public static final int SCR_WIDTH = 900, SCR_HEIGHT =900;
+	public static final int SCR_WIDTH = 1920, SCR_HEIGHT =1080;
 
 	SpriteBatch batch;
 	OrthographicCamera camera;
