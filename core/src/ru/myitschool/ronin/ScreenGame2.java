@@ -1,5 +1,7 @@
 package ru.myitschool.ronin;
 
+
+
 import static ru.myitschool.ronin.MyGG.SCR_HEIGHT;
 import static ru.myitschool.ronin.MyGG.SCR_WIDTH;
 
@@ -8,7 +10,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class ScreenGame implements Screen {
+public class ScreenGame2 implements Screen {
     MyGG gg;
     Texture imgGame1;
     TextButton  btnBack;
@@ -18,18 +20,18 @@ public class ScreenGame implements Screen {
     Ronin ronin;
     long timeStart;
 
-    float[] level = new float[]{110, 337, 670}; // уровни экрана
-    Ladder[] ladders = new Ladder[2]; // лестницы экрана
+    float[] level = new float[]{110, 337, 670};
+    Ladder[] ladders = new Ladder[2];
 
-    public ScreenGame(MyGG myGG) {
+    public ScreenGame2(MyGG myGG) {
         gg = myGG;
-        imgGame1 = new Texture("Game1.png"); // картинка экрана
+        imgGame1 = new Texture("Game2.png");
         btnBack = new TextButton(gg.fontSmall, "Back", SCR_WIDTH-130, SCR_HEIGHT);
         imgRonin = new  Texture("Ronin.png");
 
         ronin = new Ronin(SCR_WIDTH/6f-100,level[1],130,144);
-        ladders[0] = new Ladder(686, 754, level[0], level[1]); // лестницы экрана
-        ladders[1] = new Ladder(1290, 1362, level[1], level[2]); // лестницы экрана
+        ladders[0] = new Ladder(686, 754, level[0], level[1]);
+        ladders[1] = new Ladder(1290, 1362, level[1], level[2]);
     }
 
 
@@ -80,11 +82,11 @@ public class ScreenGame implements Screen {
             }
         }
         // переходы на другие экраны
-        if(ronin.x > SCR_WIDTH-ronin.width/2){
-            gg.screenGame2.ronin.x = gg.screenGame2.ronin.width/2;
-            gg.screenGame2.ronin.y = ronin.y;
+        if(ronin.x < ronin.width/2){
+            gg.screenGame.ronin.x = SCR_WIDTH-gg.screenGame.ronin.width/2;
+            gg.screenGame.ronin.y = ronin.y;
             ronin.targetX = ronin.x-ronin.vx;
-            gg.setScreen(gg.screenGame2);
+            gg.setScreen(gg.screenGame);
         }
 
         // отрисовка графики
@@ -122,5 +124,3 @@ public class ScreenGame implements Screen {
         imgGame1.dispose();
     }
 }
-
-

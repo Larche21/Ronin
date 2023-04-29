@@ -13,10 +13,10 @@ public class ScreenAbout implements Screen {
     MyGG gg;
     Texture imgBG;
     TextButton btnBack;
-    String textAbout =  "This is a game about war\n" +
-                        "created at Samsung IT School\n" +
-                        "which will be interesting\n"+
-                        "to everyone";
+    String textAbout =  "THIS IS A GAME ABOUT WAR\n" +
+                        "CREATED AT SAMSUNG IT SCHOOL\n" +
+                        "WITCH WILL BE INTERESTING\n"+
+                        "TO EVERYONE";
 
     public ScreenAbout(MyGG myGG){
         gg = myGG;
@@ -45,7 +45,7 @@ public class ScreenAbout implements Screen {
         gg.batch.setProjectionMatrix(gg.camera.combined);
         gg.batch.begin();
         gg.batch.draw(imgBG, 0, 0, SCR_WIDTH, SCR_HEIGHT);
-        gg.fontSmall.draw(gg.batch, textAbout, 50, 600);
+        gg.fontSmall.draw(gg.batch, textAbout, 500, 650);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
         gg.batch.end();
 
