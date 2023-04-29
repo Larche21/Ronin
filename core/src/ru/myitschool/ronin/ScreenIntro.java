@@ -20,10 +20,10 @@ public class ScreenIntro implements Screen {
 
     public ScreenIntro(MyGG myGG){
         gg = myGG;
-        btnPlay = new TextButton(gg.fontLarge, "PLAY", 400, 600);
-        btnSettings = new TextButton(gg.fontLarge, "SETTINGS", 400, 500);
-        btnAbout = new TextButton(gg.fontLarge, "ABOUT", 400, 400);
-        btnExit = new TextButton(gg.fontLarge, "EXIT", 400, 300);
+        btnPlay = new TextButton(gg.fontLarge, "PLAY", 900, 700);
+        btnSettings = new TextButton(gg.fontLarge, "SETTINGS", 900, 600);
+        btnAbout = new TextButton(gg.fontLarge, "ABOUT", 900, 500);
+        btnExit = new TextButton(gg.fontLarge, "EXIT", 900, 400);
         imgBG = new Texture("Intro.png");
 
     }
