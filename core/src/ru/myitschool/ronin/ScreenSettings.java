@@ -14,14 +14,14 @@ import com.badlogic.gdx.graphics.Texture;
 public class ScreenSettings implements Screen {
     MyGG gg;
     Texture imgBG;
-    TextButton btnEnterName, btnSound, btnMusic, btnClearTable, btnBack;
+    TextButton btnEnterName, btnSound, btnMusic, btnBack;
     boolean enterPlayerName;
     InputKeyboard keyboard;
     String playerName = "Noname";
 
     public ScreenSettings(MyGG myGG){
         gg = myGG;
-        btnEnterName = new TextButton(gg.fontLarge, "NAME: "+playerName, 100, 600);
+        btnEnterName = new TextButton(gg.fontLarge, "NAME: "+playerName, 350, 600);
         btnSound = new TextButton(gg.fontLarge, "SOUND ON", 100, 500);
         btnMusic = new TextButton(gg.fontLarge, "MUSIC ON", 100, 400);
         btnBack = new TextButton(gg.fontLarge, "BACK", 100, 200);

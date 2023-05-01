@@ -30,8 +30,8 @@ public class ScreenGame2 implements Screen {
         imgRonin = new  Texture("Ronin.png");
 
         ronin = new Ronin(SCR_WIDTH/6f-100,level[1],130,144);
-        ladders[0] = new Ladder(686, 754, level[0], level[1]);
-        ladders[1] = new Ladder(1290, 1362, level[1], level[2]);
+        ladders[0] = new Ladder(561, 643, level[1], level[2]);
+        ladders[1] = new Ladder(1659, 1732, level[0], level[1]);
     }
 
 
@@ -88,6 +88,13 @@ public class ScreenGame2 implements Screen {
             ronin.targetX = ronin.x-ronin.vx;
             gg.setScreen(gg.screenGame);
         }
+        if(ronin.x > SCR_WIDTH-ronin.width/2){
+            gg.screenGame2.ronin.x = gg.screenGame2.ronin.width/2;
+            gg.screenGame2.ronin.y = ronin.y;
+            ronin.targetX = ronin.x-ronin.vx;
+            gg.setScreen(gg.screenGame3);
+        }
+
 
         // отрисовка графики
         gg.camera.update();
@@ -95,7 +102,6 @@ public class ScreenGame2 implements Screen {
         gg.batch.begin();
         gg.batch.draw(imgGame1, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
-        /*gg.batch.draw(imgRonin,-400,7,SCR_WIDTH,SCR_HEIGHT);*/
         gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height);
         gg.batch.end();
     }

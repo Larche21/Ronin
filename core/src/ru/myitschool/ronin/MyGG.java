@@ -20,6 +20,7 @@ public class MyGG extends Game {
 	ScreenIntro screenIntro;
 	ScreenGame screenGame;
 	ScreenGame2 screenGame2;
+	ScreenGame3 screenGame3;
 	ScreenSettings screenSettings;
 	ScreenAbout screenAbout;
 
@@ -37,6 +38,7 @@ public class MyGG extends Game {
 		screenIntro = new ScreenIntro(this);
 		screenGame = new ScreenGame(this);
 		screenGame2 = new ScreenGame2(this);
+		screenGame3 = new ScreenGame3(this);
 		screenSettings = new ScreenSettings(this);
 		screenAbout = new ScreenAbout(this);
 		setScreen(screenIntro);
