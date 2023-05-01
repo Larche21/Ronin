@@ -35,9 +35,7 @@ public class ScreenGame implements Screen {
 
     @Override
     public void show() {
-        timeStart = TimeUtils.millis();
-
-
+        timeStart =TimeUtils.millis();
     }
 
     @Override
