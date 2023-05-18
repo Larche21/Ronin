@@ -8,6 +8,7 @@ public class Ronin {
     float vx, vy;
     float targetX, targetY;
     boolean isOnLadder;
+    boolean isFalling;
 
     public Ronin(float x, float y, float width, float height) {
         this.x = x;
@@ -16,18 +17,32 @@ public class Ronin {
         this.height = height;
     }
 
-    public void move() {
+    public void move(float[] levels) {
         x += vx;
         y += vy;
-        if(vx > 0 && x >= targetX || vx < 0 && x <= targetX){
-            vx = 0;
-            x = targetX;
+        if(isFalling) {
+            for (int i = 0; i < levels.length; i++) {
+                if(isOnLevel(levels[i])){
+                    isFalling = false;
+                    vy = 0;
+                }
+            }
+        } else {
+            if (vx > 0 && x >= targetX || vx < 0 && x <= targetX) {
+                vx = 0;
+                x = targetX;
+            }
+            if (vy > 0 && y >= targetY || vy < 0 && y <= targetY) {
+                vy = 0;
+                y = targetY;
+            }
         }
-        if(vy > 0 && y >= targetY || vy < 0 && y <= targetY){
-            vy = 0;
-            y = targetY;
-        }
+
         //outOfScreen();
+    }
+
+    boolean die(){
+        return y < -height*10;
     }
 
     private void outOfScreen() {
@@ -60,6 +75,14 @@ public class Ronin {
 
     boolean hit(float tx, float ty){
         return x < tx && tx < x+width && y-height < ty && ty < y;
+    }
+
+    boolean isOnLevel(float yLevel) {
+        if(yLevel-Math.abs(vy) < y && y < yLevel+Math.abs(vy)){
+            y = yLevel;
+            return true;
+        }
+        return false;
     }
 }
 

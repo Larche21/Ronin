@@ -22,8 +22,8 @@ public class ScreenSettings implements Screen {
     public ScreenSettings(MyGG myGG){
         gg = myGG;
         btnEnterName = new TextButton(gg.fontLarge, "NAME: "+playerName, 350, 600);
-        btnSound = new TextButton(gg.fontLarge, "SOUND ON", 100, 500);
-        btnMusic = new TextButton(gg.fontLarge, "MUSIC ON", 100, 400);
+        btnSound = new TextButton(gg.fontLarge, "SOUND ON", 350, 500);
+        btnMusic = new TextButton(gg.fontLarge, "MUSIC ON", 350, 400);
         btnBack = new TextButton(gg.fontLarge, "BACK", 100, 200);
 
         imgBG = new Texture("Settings.png");

@@ -43,7 +43,7 @@ public class InputKeyboard {
         generateFont();
         this.textLength = textLength; // количество вводимых символов
 
-        imgAtlasKeys = new Texture("keys.png");
+        imgAtlasKeys = new Texture("Keys2.png");
         imgKeyUP = new TextureRegion(imgAtlasKeys, 0, 0, 256, 256);
         imgKeyDown = new TextureRegion(imgAtlasKeys, 256, 0, 256, 256);
         imgEditText = new TextureRegion(imgAtlasKeys, 256*2, 0, 256, 256);

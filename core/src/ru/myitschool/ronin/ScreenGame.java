@@ -14,22 +14,35 @@ public class ScreenGame implements Screen {
     TextButton  btnBack;
 
     Texture imgRonin;
+    Texture imgSkel;
 
     Ronin ronin;
+    Skel skel;
     long timeStart;
 
-    float[] level = new float[]{110, 337, 670}; // уровни экрана
+    float[] levels = new float[]{110, 337, 670}; // уровни экрана
+
     Ladder[] ladders = new Ladder[2]; // лестницы экрана
+
+    Ladder[] abysses = new Ladder[2]; // пропасти
 
     public ScreenGame(MyGG myGG) {
         gg = myGG;
         imgGame1 = new Texture("Game1.png"); // картинка экрана
         btnBack = new TextButton(gg.fontSmall, "Back", SCR_WIDTH-130, SCR_HEIGHT);
         imgRonin = new  Texture("Ronin.png");
+        imgSkel = new  Texture("Skel.png");
 
-        ronin = new Ronin(SCR_WIDTH/6f-100,level[1],130,144);
-        ladders[0] = new Ladder(686, 754, level[0], level[1]); // лестницы экрана
-        ladders[1] = new Ladder(1290, 1362, level[1], level[2]); // лестницы экрана
+        ronin = new Ronin(SCR_WIDTH/6f-100, levels[1],130,144);
+
+
+        ladders[0] = new Ladder(686, 754, levels[0], levels[1]); // лестницы экрана
+        ladders[1] = new Ladder(1290, 1362, levels[1], levels[2]); // лестницы экрана
+
+        skel = new Skel(SCR_WIDTH/6f+900, levels[2],130,190);
+
+        abysses[0] = new Ladder(0, 888, levels[2], levels[2]);
+        abysses[1] = new Ladder(992, SCR_WIDTH, levels[0], levels[0]);
     }
 
 
@@ -67,15 +80,26 @@ public class ScreenGame implements Screen {
             }
         }
 
-
-
         // события
-        ronin.move();
-        for (int i = 0; i < level.length; i++) {
-            if(ronin.y == level[i]){
-                ronin.isOnLadder = false;
+        ronin.move(levels);
+        for (int i = 0; i < abysses.length; i++) {
+            if(ronin.x>abysses[i].x1 && ronin.x<abysses[i].x2 && abysses[i].y2==ronin.y){
+                ronin.vy = -10;
+                ronin.vx = 0;
+                ronin.isFalling = true;
             }
         }
+        if(ronin.isOnLadder) {
+            for (int i = 0; i < levels.length; i++) {
+                if (ronin.isOnLevel(levels[i])) {
+                    ronin.isOnLadder = false;
+                }
+            }
+        }
+        if(ronin.die()){
+            gg.setScreen(gg.screenIntro);
+        }
+
         // переходы на другие экраны
         if(ronin.x > SCR_WIDTH-ronin.width/2){
             gg.screenGame2.ronin.x = gg.screenGame2.ronin.width/2;
@@ -91,6 +115,7 @@ public class ScreenGame implements Screen {
         gg.batch.draw(imgGame1, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
         gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height);
+        gg.batch.draw(imgSkel, skel.scrX() , skel.scrY(), skel.width , skel.height);
         gg.batch.end();
     }
     @Override

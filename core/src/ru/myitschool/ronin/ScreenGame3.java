@@ -75,7 +75,7 @@ public class ScreenGame3 implements Screen {
 
 
         // события
-        ronin.move();
+        ronin.move(level);
         for (int i = 0; i < level.length; i++) {
             if(ronin.y == level[i]){
                 ronin.isOnLadder = false;

@@ -16,22 +16,33 @@ public class ScreenGame2 implements Screen {
     TextButton  btnBack;
 
     Texture imgRonin;
+    Texture imgSkel;
 
     Ronin ronin;
+    Skel skel;
     long timeStart;
 
-    float[] level = new float[]{110, 337, 670};
+    float[] levels = new float[]{110, 337, 670}; // уровни экрана
+
     Ladder[] ladders = new Ladder[2];
 
+    Ladder[] abysses = new Ladder[2]; // пропасти
     public ScreenGame2(MyGG myGG) {
         gg = myGG;
         imgGame1 = new Texture("Game2.png");
         btnBack = new TextButton(gg.fontSmall, "Back", SCR_WIDTH-130, SCR_HEIGHT);
         imgRonin = new  Texture("Ronin.png");
+        imgSkel = new Texture("Skel.png");
 
-        ronin = new Ronin(SCR_WIDTH/6f-100,level[1],130,144);
-        ladders[0] = new Ladder(561, 643, level[1], level[2]);
-        ladders[1] = new Ladder(1659, 1732, level[0], level[1]);
+        ronin = new Ronin(SCR_WIDTH/6f-100,levels[1],130,144);
+        ladders[0] = new Ladder(561, 643, levels[1], levels[2]);
+        ladders[1] = new Ladder(1659, 1732, levels[0], levels[1]);
+
+        abysses[0] = new Ladder(0, 888, levels[2], levels[2]);
+        abysses[1] = new Ladder(992, SCR_WIDTH, levels[0], levels[0]);
+
+        skel = new Skel(SCR_WIDTH/6f+900, levels[2],130,190);
+
     }
 
 
@@ -75,12 +86,24 @@ public class ScreenGame2 implements Screen {
 
 
         // события
-        ronin.move();
-        for (int i = 0; i < level.length; i++) {
-            if(ronin.y == level[i]){
+        ronin.move(levels);
+        for (int i = 0; i < levels.length; i++) {
+            if(ronin.y == levels[i]){
                 ronin.isOnLadder = false;
             }
         }
+
+        if(ronin.isOnLadder) {
+            for (int i = 0; i < levels.length; i++) {
+                if (ronin.isOnLevel(levels[i])) {
+                    ronin.isOnLadder = false;
+                }
+            }
+        }
+        if(ronin.die()){
+            gg.setScreen(gg.screenIntro);
+        }
+
         // переходы на другие экраны
         if(ronin.x < ronin.width/2){
             gg.screenGame.ronin.x = SCR_WIDTH-gg.screenGame.ronin.width/2;
