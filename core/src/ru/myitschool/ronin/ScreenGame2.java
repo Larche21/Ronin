@@ -38,8 +38,8 @@ public class ScreenGame2 implements Screen {
         ladders[0] = new Ladder(561, 643, levels[1], levels[2]);
         ladders[1] = new Ladder(1659, 1732, levels[0], levels[1]);
 
-        abysses[0] = new Ladder(0, 888, levels[2], levels[2]);
-        abysses[1] = new Ladder(992, SCR_WIDTH, levels[0], levels[0]);
+        abysses[0] = new Ladder(756, SCR_WIDTH, levels[2], levels[2]);
+        abysses[1] = new Ladder(0, 1105, levels[0], levels[0]);
 
         skel = new Skel(SCR_WIDTH/6f+900, levels[2],130,190);
 
@@ -125,7 +125,7 @@ public class ScreenGame2 implements Screen {
         gg.batch.begin();
         gg.batch.draw(imgGame1, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
-        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height);
+        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height, 0, 0, 130, 144, ronin.direction, false);
         gg.batch.end();
     }
     @Override

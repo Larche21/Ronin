@@ -39,7 +39,7 @@ public class ScreenGame implements Screen {
         ladders[0] = new Ladder(686, 754, levels[0], levels[1]); // лестницы экрана
         ladders[1] = new Ladder(1290, 1362, levels[1], levels[2]); // лестницы экрана
 
-        skel = new Skel(SCR_WIDTH/6f+900, levels[2],130,190);
+        skel = new Skel(SCR_WIDTH/6f+800, levels[2], 110,150);
 
         abysses[0] = new Ladder(0, 888, levels[2], levels[2]);
         abysses[1] = new Ladder(992, SCR_WIDTH, levels[0], levels[0]);
@@ -114,7 +114,7 @@ public class ScreenGame implements Screen {
         gg.batch.begin();
         gg.batch.draw(imgGame1, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
-        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height);
+        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height, 0, 0, 130, 144, ronin.direction, false);
         gg.batch.draw(imgSkel, skel.scrX() , skel.scrY(), skel.width , skel.height);
         gg.batch.end();
     }

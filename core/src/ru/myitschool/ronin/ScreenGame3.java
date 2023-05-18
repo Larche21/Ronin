@@ -95,7 +95,7 @@ public class ScreenGame3 implements Screen {
         gg.batch.begin();
         gg.batch.draw(imgGame1, 0, 0, SCR_WIDTH, SCR_HEIGHT);
         btnBack.font.draw(gg.batch, btnBack.text, btnBack.x, btnBack.y);
-        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height);
+        gg.batch.draw(imgRonin, ronin.scrX(), ronin.scrY(), ronin.width, ronin.height, 0, 0, 130, 144, ronin.direction, false);
         gg.batch.end();
     }
     @Override

@@ -9,6 +9,7 @@ public class Ronin {
     float targetX, targetY;
     boolean isOnLadder;
     boolean isFalling;
+    boolean direction; // false - вправо, true - влево
 
     public Ronin(float x, float y, float width, float height) {
         this.x = x;
@@ -65,8 +66,14 @@ public class Ronin {
 
     void gotoXY(float tx, float ty){
         targetX = tx;
-        if(tx>x) vx = 5;
-        else vx = -5;
+        if(tx>x) {
+            vx = 5;
+            direction = false;
+        }
+        else {
+            vx = -5;
+            direction = true;
+        }
 
         targetY = ty;
         if(ty>y) vy = 5;
