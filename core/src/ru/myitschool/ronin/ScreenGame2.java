@@ -59,7 +59,6 @@ public class ScreenGame2 implements Screen {
         if(Gdx.input.justTouched()) {
             gg.touch.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             gg.camera.unproject(gg.touch);
-            System.out.println(gg.touch.x +" "+ gg.touch.y);
             if(btnBack.hit(gg.touch.x, gg.touch.y)){
                 gg.setScreen(gg.screenIntro);
             } else {
@@ -87,9 +86,11 @@ public class ScreenGame2 implements Screen {
 
         // события
         ronin.move(levels);
-        for (int i = 0; i < levels.length; i++) {
-            if(ronin.y == levels[i]){
-                ronin.isOnLadder = false;
+        for (int i = 0; i < abysses.length; i++) {
+            if(ronin.x>abysses[i].x1 && ronin.x<abysses[i].x2 && abysses[i].y2==ronin.y){
+                ronin.vy = -10;
+                ronin.vx = 0;
+                ronin.isFalling = true;
             }
         }
 
